@@ -19,6 +19,8 @@ The system supports at-least-once execution semantics, records execution history
 
 
 ## System Design
+The high-level system architecture is illustrated below. 
+
 
 The system is implemented as a single backend service. It separates responsibilities into API handling, scheduling, execution, and persistence to keep the design simple and maintainable.
 
