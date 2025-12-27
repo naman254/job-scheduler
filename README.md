@@ -19,8 +19,24 @@ The system supports at-least-once execution semantics, records execution history
 
 
 ## System Design
-The high-level system architecture is illustrated below. 
+### Architecture Diagram
 
+```mermaid
+flowchart LR
+    Client[Client / API Consumer]
+    API[Express API Server]
+    Scheduler[node-cron Scheduler]
+    Queue[Worker Queue\nConcurrency = 10]
+    ExternalAPI[External HTTP API]
+    DB[(PostgreSQL Database)]
+
+    Client -->|HTTP| API
+    API -->|Create Job| DB
+    API -->|Register Job| Scheduler
+    Scheduler -->|Trigger| Queue
+    Queue -->|HTTP Call| ExternalAPI
+    Queue -->|Persist Result| DB
+```
 
 The system is implemented as a single backend service. It separates responsibilities into API handling, scheduling, execution, and persistence to keep the design simple and maintainable.
 
