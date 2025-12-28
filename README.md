@@ -162,7 +162,7 @@ Description
 
 This endpoint can be used for basic monitoring and readiness checks.
 
-## Setuo
+## Setup
 
 1. Install dependencies:
 ```bash
